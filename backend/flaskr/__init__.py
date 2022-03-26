@@ -20,11 +20,6 @@ def create_app(test_config=None):
         response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
         return 
 
-    """
-    @TODO:
-    Create an endpoint to handle GET requests
-    for all available categories.
-    """
     @app.route('/categories')
     def retrieve_categories():
         categories = Category.query.order_by(Category.type).all()
