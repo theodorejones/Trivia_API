@@ -142,5 +142,7 @@ def create_app(test_config=None):
     including 404 and 422.
     """
 
+    
+    app = create_app()
     return app
 
