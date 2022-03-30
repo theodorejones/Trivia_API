@@ -39,7 +39,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(len(data['questions']))
         self.assertTrue(len(data['categories']))
 
-    '''def test_404_sent_requesting_questions_beyond_valid_page(self):
+    def test_404_sent_requesting_questions_beyond_valid_page(self):
         res = self.client().get('/questions?page=1000')
         data = json.loads(res.data)
 
@@ -173,7 +173,7 @@ class TriviaTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 422)
         self.assertEqual(data["success"], False)
-        self.assertEqual(data["message"], "unprocessable")'''
+        self.assertEqual(data["message"], "unprocessable")
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
