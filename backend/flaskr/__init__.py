@@ -118,7 +118,7 @@ def create_app(test_config=None):
                 'current_category': category_id})
         except:
             abort(404)
-
+ 
     @app.route('/quizzes', methods=['POST'])
     def play_quiz():
         try:
