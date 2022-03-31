@@ -71,22 +71,132 @@ One note before you delve into your tasks: for each endpoint, you are expected t
 
 You will need to provide detailed documentation of your API endpoints including the URL, request parameters, and the response body. Use the example below as a reference.
 
-### Documentation Example
+`GET '\categories'`
 
-`GET '/api/v1.0/categories'`
-
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
+- Fetches a dictionary of categories
 - Request Arguments: None
-- Returns: An object with a single key, `categories`, that contains an object of `id: category_string` key: value pairs.
+- Example response:
 
 ```json
-{
+categories:{
   "1": "Science",
   "2": "Art",
   "3": "Geography",
   "4": "History",
   "5": "Entertainment",
   "6": "Sports"
+}
+"success": true
+```
+`GET '\questions?page=<page_number>'`
+
+- Fetches a dictionary of questions in all categories
+- Request Arguments(optional): page:int
+- Example response:
+
+```json
+ "categories": {
+   "1": "Science", 
+   "2": "Art", 
+   "3": "Geography", 
+   "4": "History"
+ }, 
+ "current_category": null, 
+ "questions": [
+   {
+     "answer": "Maya Angelou", 
+     "category": 4, 
+     "difficulty": 2, 
+     "id": 5, 
+     "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
+   }
+ ], 
+ "success": true, 
+ "total_questions": 1
+}
+```
+`DELETE '\questions\<question_id>'`
+
+- Removes existing questions from the repository
+- Request Arguments: question_id:int
+- Example response:
+
+```
+"deleted": "28",
+"success": true
+```
+`POST '\questions'`
+
+- Adds questions to the repository
+- Request Arguments: {question:string, answer:string, difficulty:int, category:string}
+- Example response:
+
+```
+"created": "28",
+"success": true
+```
+`POST '\questions\search'`
+
+- Fetches all questions matching a substring in a search term
+- Request Arguments: {searchTerm:string}
+- Example response:
+
+```
+{
+  "current_category": null, 
+  "questions": [
+    {
+      "answer": "Lisbon", 
+      "category": 2, 
+      "difficulty": 1, 
+      "id": 29, 
+      "question": "What is the capital of Portugal?"
+    }
+  ], 
+  "success": true, 
+  "total_questions": 1
+}
+```
+`GET '\categories\<int:category_id>\questions'`
+
+- Fetches all questions within a specific category
+- Request Arguments: category_id:int
+- Example response:
+
+```
+{
+  "current_category": 1, 
+  "questions": [
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }, 
+  ], 
+  "success": true, 
+  "total_questions": 1
+}
+```
+`POST '\quizzes'`
+
+- Fetches a random question within a specific category, excluding those previously asked
+- Request Arguments: {previous_questions: arr, quiz_category: {id:int, type:string}}
+- Example response:
+
+```
+{
+  "question": [
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }, 
+  ], 
+  "success": true
 }
 ```
 
